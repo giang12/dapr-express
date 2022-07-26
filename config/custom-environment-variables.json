@@ -1,0 +1,8 @@
+{
+	"settings":{
+	    "port": "SERVER_PORT",
+	    "ip": "SERVER_HOST",
+	    "daprHost": "DAPR_HOST",
+	    "daprPort": "DAPR_PORT"
+	}
+}

@@ -1,0 +1,80 @@
+---
+routes:
+- url: "/healthz"
+  verb: get
+  executor: static
+- url: "/404"
+  verb: get
+  executor: static
+  static:
+    status: 404
+    value: "<h1>Page Not Found!</h1>"
+- url: "/x1111"
+  verb: get
+  auth: "Basic"
+  executor: redirect
+- url: "/google"
+  verb: get
+  executor: redirect
+  redirect:
+    path: "https://google.com"
+- url: "/free"
+  verb: get
+  auth: "NoAuth"
+  rateLimit:
+    windowMs: 900000
+    max: 5
+  executor: HttpProxy
+  proxy:
+    target: https://www.google.com
+    changeOrigin: true
+    pathRewrite:
+      "^/free": "/"
+- url: "/premium"
+  verb: get
+  auth: "Basic"
+  cors:
+    origin:
+    - http://localhost:42069
+    methods: GET
+  executor: HttpProxy
+  proxy:
+    target: https://www.google.com
+    changeOrigin: true
+    pathRewrite:
+      "^/premium": "/"
+- url: "/echo"
+  verb: post
+  auth: "Basic"
+  json:
+    limit: "44mb" #test large file
+  urlencoded: true
+  executor: DaprRpc
+  rpc:
+    appName: echo-app
+    method: echo
+- url: "/add"
+  verb: post
+  cors: false
+  executor: DaprRpc
+  rpc:
+    appName: calculator-app
+    method: add
+- url: "/subtract"
+  verb: post
+  executor: DaprRpc
+  rpc:
+    appName: calculator-app
+    method: subtract
+- url: "/devide"
+  verb: post
+  executor: DaprRpc
+  rpc:
+    appName: calculator-app
+    method: devide
+- url: "/multiply"
+  verb: post
+  executor: DaprRpc
+  rpc:
+    appName: calculator-app
+    method: multiply
