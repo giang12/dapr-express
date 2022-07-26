@@ -3,6 +3,7 @@ simple express server with dapr sample
 
 ## features
 plugins architecture:
+```
 	executors(dapr.invoke, http.proxy, redirect, pubsub, socket, etc)
 	before after hooks (global and specific paths)
 	authenticators & authorizers
@@ -14,15 +15,20 @@ battery packs included:
 healthz & readyz probs, graceful shutdown (localhost:3500/v1.0/shutdown)
 http2/3, certz
 grpc-grpc
-
+```
 simple & clean & fast
 
 ## usage
 
-npm i -g api-ingress
+see https://github.com/node-config/node-config#quick-start to set up configs
 
-//starting dapr sidecar and api-gw side by side
-dapr run --app-id ingress-app --app-port 8080 --dapr-grpc-port 3500 -- dapr-express
+sample configs https://github.com/giang12/dapr-express/tree/main/config
+
+npm i -g dapr-express
+
+//starting dapr sidecar and dapr-express side by side
+
+`dapr run --app-id ingress-app --app-port 8080 --dapr-grpc-port 3500 -- dapr-express`
 
 ## env vars
 ```

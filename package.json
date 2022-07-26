@@ -1,5 +1,9 @@
 {
   "name": "dapr-express",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/giang12/dapr-express.git"
+  },
   "version": "1.0.0",
   "description": "dapr ingress",
   "main": "dist/index.js",
